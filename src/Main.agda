@@ -4,6 +4,9 @@ module Main where
 
 open import Data.Nat
 open import DSL.STLC
+open import DSL.SPSTLC
+open import DSL.MKSTLC
+open import DSL.KSTLC
 open import IO
 
 ty : Ty ℕ

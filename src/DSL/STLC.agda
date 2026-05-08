@@ -34,7 +34,7 @@ show-tm : ∀ {ℓ} → {α : Set ℓ} → ∀ {Γ} → {τ : Ty α} → Tm Γ �
 show-tm var = "x"
 show-tm (↑ t) = "↑ " + show-tm t
 show-tm (lam t) = "λ " + show-tm t
-show-tm (t' · t) = "(" + show-tm t' + ") · (" + show-tm t + ")"
+show-tm (t' · t) = "(" + show-tm t' + ") (" + show-tm t + ")"
 
 -- An n-fold version of `↑_`.
 ⇑_ : ∀ {ℓ} → {α : Set ℓ} → ∀ {Γ Γ'} → {τ : Ty α} → Tm Γ τ → Tm (Γ' ++ Γ) τ
