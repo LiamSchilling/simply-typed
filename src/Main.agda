@@ -16,7 +16,7 @@ tm : Tm [] ty
 tm = lam var
 
 normal-tm : Tm [] ty
-normal-tm = normalize-tm ty [] tm
+normal-tm = normalize-tm [] tm
 
 main : Main
 main = run (putStrLn (show-tm normal-tm))
