@@ -23,7 +23,7 @@ open module TS = TypeSystem Ty public
 -- Pretty-printing for types.
 show-ty : ∀ {ℓ} → {α : Set ℓ} → (α → String) → Ty α → String
 show-ty show (atom a) = show a
-show-ty show (τ ⟶ τ') = "(" + show-ty show τ + " ⟶ " + show-ty show τ' + ")"
+show-ty show (τ ⟶ τ') = "(" + show-ty show τ + " → " + show-ty show τ' + ")"
 
 ----------------------------------------------------------------------------------------------------
 -- Terms
@@ -71,7 +71,7 @@ dnt-ctx φ Γ = HCtx (dnt-ty φ Γ)
 -- we can show that it holds for the semantic domain of terms.
 dnt-wkn : ∀ {ℓ ℓ'} → {α : Set ℓ} (φ : Itp ℓ' α) → Wkn φ → Wkn (dnt-ty φ)
 dnt-wkn φ wkn {Γ} {atom a} {τ'} σ = into-itp φ (wkn (out-itp φ σ))
-dnt-wkn φ wkn {Γ} {τ ⟶ τ'} {τ''} σ {Γ'} rewrite sym (++-assoc Γ' [ τ'' ] Γ) = σ {Γ' ∷ʳ τ''}
+dnt-wkn φ wkn {Γ} {τ ⟶ τ'} {τ''} σ {Γ'} rewrite sym (++-assoc Γ' (τ'' ∷ []) Γ) = σ {Γ' ∷ʳ τ''}
 
 -- The semantic denotation of a term into a meta-level term
 -- given the denotation of its context.
