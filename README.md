@@ -1,6 +1,12 @@
 # Simply Typed
 
-An intrinsically-typed development of simple type systems with type-driven implementations of denotational semantics and normalization-by-evaluation.
+An intrinsically-typed development of simple type systems with typeful implementations of denotational semantics and normalization-by-evaluation.
+
+#### Run with
+
+```
+make run
+```
 
 ## Blueprint
 
@@ -8,7 +14,7 @@ An intrinsically-typed development of simple type systems with type-driven imple
 
 The type constructs are type atoms and arrow types. Normalization is [typical](https://en.wikipedia.org/wiki/Normalisation_by_evaluation).
 
-### • STLC with product and sum types
+### • STLC with product and sum types ([DSL.SPSTLC](https://github.com/LiamSchilling/simply-typed/blob/master/src/DSL/SPSTLC.agda))
 
 The type constructs are type atoms, arrow types, n-ary products, and n-ary sums. Normalization now requires the nondeterminism monad in the style of [Altenkirch and Uustalu (2004)](https://people.cs.nott.ac.uk/psztxa/publ/Nbe2.pdf).
 
