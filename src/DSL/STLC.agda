@@ -2,11 +2,15 @@
 
 module DSL.STLC where
 
+open import Data.HList using (hmap)
+open import Data.List using ([_]; _∷ʳ_)
+open import Data.List.Properties using (++-assoc)
 open import Data.String using (String) renaming (_++_ to _+_)
 open import Relation.Binary.PropositionalEquality using (sym)
+open import Level using (_⊔_)
 import TypeSystem
 
-infixr 5 _⟶_
+infixr 10 _⟶_
 infixl 10 _·_
 
 ----------------------------------------------------------------------------------------------------
@@ -71,7 +75,7 @@ dnt-ctx φ Γ = HCtx (dnt-ty φ Γ)
 -- we can show that it holds for the semantic domain of terms.
 dnt-wkn : ∀ {ℓ ℓ'} → {α : Set ℓ} (φ : Itp ℓ' α) → Wkn φ → Wkn (dnt-ty φ)
 dnt-wkn φ wkn {Γ} {atom a} {τ'} σ = into-itp φ (wkn (out-itp φ σ))
-dnt-wkn φ wkn {Γ} {τ ⟶ τ'} {τ''} σ {Γ'} rewrite sym (++-assoc Γ' (τ'' ∷ []) Γ) = σ {Γ' ∷ʳ τ''}
+dnt-wkn φ wkn {Γ} {τ ⟶ τ'} {τ''} σ {Γ'} rewrite sym (++-assoc Γ' [ τ'' ] Γ) = σ {Γ' ∷ʳ τ''}
 
 -- The semantic denotation of a term into a meta-level term
 -- given the denotation of its context.

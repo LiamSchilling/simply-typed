@@ -13,7 +13,12 @@ data HList {ℓ ℓ'} {α : Set ℓ} (f : α → Set ℓ') : List α → Set ℓ
   _∷_ : ∀ {x xs} → f x → HList f xs → HList f (x ∷ xs)
 
 -- Transport the indexing function along a transformation quantified over all type indices.
-hmap : ∀ {ℓ ℓ'} → {α : Set ℓ} {f g : α → Set ℓ'} →
+hmap : ∀ {ℓ ℓ' ℓ''} → {α : Set ℓ} {f : α → Set ℓ'} {g : α → Set ℓ''} →
        (∀ {x} → f x → g x) → ∀ {xs} → HList f xs → HList g xs
 hmap h [] = []
 hmap h (y ∷ ys) = h y ∷ hmap h ys
+
+-- Cast a heterogenous list whose indexing function is constant into a homogenous list.
+forget : ∀ {ℓ ℓ'} → {α : Set ℓ} {β : Set ℓ'} {xs : List α} → HList (λ _ → β) xs → List β
+forget [] = []
+forget (y ∷ ys) = y ∷ forget ys

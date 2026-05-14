@@ -1,12 +1,10 @@
 module TypeSystem (Ty : ∀ {ℓ} → Set ℓ → Set ℓ) where
 
 open import Data.HList using (HList)
-open import Data.HList using ([]; _∷_; hmap) public
+open import Data.HList using ([]; _∷_) public
 open import Data.List using (List)
-open import Data.List using ([]; _∷_; _++_; _∷ʳ_; map) public
-open import Data.List.Properties using (++-assoc) public
-open import Level using (Level; Lift; lift; lower)
-open import Level using (suc; _⊔_) public
+open import Data.List using ([]; _∷_; _++_) public
+open import Level using (Level; suc; _⊔_; Lift; lift; lower)
 
 ----------------------------------------------------------------------------------------------------
 -- Contexts
