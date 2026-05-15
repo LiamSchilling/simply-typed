@@ -48,10 +48,10 @@ out-itp _ = lower
 
 -- The statement that weakening holds for a denotation of type objects.
 Wkn : ∀ {ℓ ℓ' ℓ''} → {α : Set ℓ} {β : Set ℓ'} → Dnt ℓ'' α β → Set (ℓ ⊔ ℓ' ⊔ ℓ'')
-Wkn φ = ∀ {Γ b τ'} → φ Γ b → φ (τ' ∷ Γ) b
+Wkn φ = ∀ {Γ τ'} b → φ Γ b → φ (τ' ∷ Γ) b
 
 -- Transforms weakening into an n-fold version.
 iter-wkn : ∀ {ℓ ℓ' ℓ''} → {α : Set ℓ} {β : Set ℓ'} (φ : Dnt ℓ'' α β) →
-           Wkn φ → ∀ {Γ Γ' b} → φ Γ b → φ (Γ' ++ Γ) b
-iter-wkn φ wkn {Γ' = []}     σ = σ
-iter-wkn φ wkn {Γ' = _ ∷ Γ'} σ = wkn (iter-wkn φ wkn σ)
+           Wkn φ → ∀ {Γ Γ'} b → φ Γ b → φ (Γ' ++ Γ) b
+iter-wkn φ wkn {Γ' = []}     b σ = σ
+iter-wkn φ wkn {Γ' = _ ∷ Γ'} b σ = wkn b (iter-wkn φ wkn b σ)

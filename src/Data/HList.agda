@@ -1,6 +1,7 @@
 module Data.HList where
 
-open import Data.List using (List; []; _∷_)
+open import Data.Fin using (Fin; zero; suc)
+open import Data.List using (List; []; _∷_; lookup)
 
 ----------------------------------------------------------------------------------------------------
 -- Heterogenous lists
@@ -22,3 +23,13 @@ hmap h (y ∷ ys) = h y ∷ hmap h ys
 forget : ∀ {ℓ ℓ'} → {α : Set ℓ} {β : Set ℓ'} {xs : List α} → HList (λ _ → β) xs → List β
 forget []       = []
 forget (y ∷ ys) = y ∷ forget ys
+
+-- Retrieve the element of the list at the given index.
+hlookup : ∀ {ℓ ℓ'} → {α : Set ℓ} {f : α → Set ℓ'} {xs : List α} → HList f xs → ∀ i → f (lookup xs i)
+hlookup (y ∷ ys) zero    = y
+hlookup (y ∷ ys) (suc i) = hlookup ys i
+
+-- The derived form mapping a heterogenous list into a homogenous list.
+forget-map : ∀ {ℓ ℓ' ℓ''} → {α : Set ℓ} {β : Set ℓ'} {f : α → Set ℓ''} →
+             (∀ {x} → f x → β) → ∀ {xs} → HList f xs → List β
+forget-map h ys = forget (hmap h ys)
