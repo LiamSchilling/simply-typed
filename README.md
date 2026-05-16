@@ -1,3 +1,5 @@
+### `simply-typed` is a previous iteration of a more recent development at [`simply-typed-parametric`](https://github.com/LiamSchilling/simply-typed-parametric).
+
 # Simply Typed
 
 An intrinsically-typed development of simple type systems with typeful implementations of denotational semantics and normalization-by-evaluation.
