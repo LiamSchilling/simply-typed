@@ -1,4 +1,4 @@
-### `simply-typed` is a previous iteration of a more recent development at [`simply-typed-parametric`](https://github.com/LiamSchilling/simply-typed-parametric).
+### `simply-typed` is the previous iteration of a more recent development at [`simply-typed-parametric`](https://github.com/LiamSchilling/simply-typed-parametric).
 
 # Simply Typed
 
